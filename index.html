@@ -312,16 +312,10 @@
             <button class="love-btn" onclick="createMemory()">📝 Tạo kỷ niệm mới</button>
 
             <!-- 👇 Nhúng player YouTube ẩn hoàn toàn -->
-            <iframe
-    id="youtubeAudio"
-    width="0"
-    height="0"
-    style="display: none;"
-    src="https://www.youtube.com/embed/fiZEng5xDf0?autoplay=1&loop=1&playlist=fiZEng5xDf0"
-    allow="autoplay"
-    frameborder="0"
-    allowfullscreen>
-</iframe>
+            <iframe id="youtubeAudio" width="0" height="0" style="display: none;"
+                src="https://www.youtube.com/embed/fiZEng5xDf0?autoplay=1&loop=1&playlist=fiZEng5xDf0" allow="autoplay"
+                frameborder="0" allowfullscreen>
+            </iframe>
 
 
             <div class="signature">
@@ -329,7 +323,7 @@
                 💕 Người yêu của em 💕
             </div>
 
-            <div class="date" id="currentDate"></div>
+            <!-- <div class="date" id="currentDate"></div> -->
         </div>
     </div>
 
@@ -428,14 +422,14 @@
         }
 
         function init() {
-            const now = new Date();
-            const dateStr = now.toLocaleDateString("vi-VN", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            });
-            document.getElementById("currentDate").textContent = dateStr;
+            // const now = new Date();
+            // const dateStr = now.toLocaleDateString("vi-VN", {
+            //     weekday: "long",
+            //     year: "numeric",
+            //     month: "long",
+            //     day: "numeric"
+            // });
+            // document.getElementById("currentDate").textContent = dateStr;
 
             setInterval(createHeart, 2000);
         }
