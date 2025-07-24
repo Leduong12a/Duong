@@ -1,0 +1,447 @@
+<!-- ⚠️ Tên file: index.html -->
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gửi Em Yêu ❤️</title>
+    <style>
+        /* ⚠️ Giữ nguyên toàn bộ CSS như bạn đã gửi — không thay đổi gì */
+        /* ... toàn bộ phần CSS giữ nguyên như trên ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Arial', sans-serif;
+
+            background: linear-gradient(-45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        @keyframes gradientBG {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 182, 193, 0.8);
+            font-size: 20px;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .love-letter {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            animation: letterGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes letterGlow {
+            from {
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            }
+
+            to {
+                box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+            }
+        }
+
+        .love-letter::before {
+            content: '💕';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            background: white;
+            padding: 0 10px;
+            border-radius: 50%;
+        }
+
+        .title {
+            font-size: 2.5rem;
+            color: #d63384;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .title::after {
+            content: '✨';
+            position: absolute;
+            right: -30px;
+            top: 0;
+            animation: sparkle 2s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+
+            0%,
+            100% {
+                transform: scale(1) rotate(0deg);
+            }
+
+            50% {
+                transform: scale(1.2) rotate(180deg);
+            }
+        }
+
+        .message {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #495057;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .interactive-section {
+            margin: 40px 0;
+        }
+
+        .love-btn {
+            background: linear-gradient(45deg, #ff6b9d, #ff8fab);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            box-shadow: 0 5px 15px rgba(255, 107, 157, 0.4);
+            font-weight: bold;
+        }
+
+        .love-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.6);
+        }
+
+        .love-counter {
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .love-message {
+            font-size: 1.1rem;
+            color: #6c757d;
+            margin-top: 15px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .love-message.show {
+            opacity: 1;
+        }
+
+        .photo-frame {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid #ff6b9d;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef);
+            font-size: 4rem;
+            animation: photoFloat 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes photoFloat {
+            from {
+                transform: translateY(0px);
+            }
+
+            to {
+                transform: translateY(-10px);
+            }
+        }
+
+        .music-note {
+            position: fixed;
+            color: #ff6b9d;
+            font-size: 25px;
+            animation: musicFloat 4s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes musicFloat {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        .signature {
+            margin-top: 40px;
+            font-size: 1.4rem;
+            color: #d63384;
+            font-weight: bold;
+        }
+
+        .date {
+            margin-top: 20px;
+            font-size: 1rem;
+            color: #6c757d;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .love-letter {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            .title {
+                font-size: 2rem;
+            }
+
+            .message {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hearts" id="hearts"></div>
+
+    <div class="container">
+        <div class="love-letter">
+            <h1 class="title">Gửi Em Yêu Của Anh ❤️</h1>
+
+            <div class="photo-frame">👫</div>
+
+            <div class="message">
+                "Em à, mỗi ngày trôi qua, anh lại yêu em nhiều hơn một chút.
+                Em là ánh nắng trong những ngày u ám, là niềm vui trong mọi khoảnh khắc.
+                Cảm ơn em đã đến bên anh và làm cuộc đời anh trở nên ý nghĩa hơn bao giờ hết."
+            </div>
+
+            <div class="interactive-section">
+                <button class="love-btn" onclick="showLove()">💖 Nhấn để thể hiện tình yêu</button>
+                <div class="love-counter" id="loveCounter">
+                    Số lần anh yêu em: <span id="count">0</span> ❤️
+                </div>
+                <div class="love-message" id="loveMessage"></div>
+            </div>
+
+            <button class="love-btn" onclick="playMusic()">🎵 Phát nhạc tình yêu</button>
+            <button class="love-btn" onclick="createMemory()">📝 Tạo kỷ niệm mới</button>
+
+            <!-- 👇 Nhúng player YouTube ẩn hoàn toàn -->
+            <iframe
+    id="youtubeAudio"
+    width="0"
+    height="0"
+    style="display: none;"
+    src="https://www.youtube.com/embed/fiZEng5xDf0?autoplay=1&loop=1&playlist=fiZEng5xDf0"
+    allow="autoplay"
+    frameborder="0"
+    allowfullscreen>
+</iframe>
+
+
+            <div class="signature">
+                Yêu em mãi mãi,<br />
+                💕 Người yêu của em 💕
+            </div>
+
+            <div class="date" id="currentDate"></div>
+        </div>
+    </div>
+
+    <script>
+        let loveCount = 0;
+        const loveMessages = [
+            "Anh yêu em như gió yêu cánh hoa 🌸",
+            "Em là điều tuyệt vời nhất trong đời anh 💫",
+            "Mỗi giây phút bên em đều là hạnh phúc 🥰",
+            "Em làm trái tim anh tan chảy 💖",
+            "Anh muốn bên em mãi mãi như thế này 👫",
+            "Em là lý do anh mỉm cười mỗi ngày 😍",
+            "Tình yêu anh dành cho em vô tận như vũ trụ 🌌",
+            "Em là thiên thần được gửi đến cho anh 👼",
+            "Anh sẽ yêu em đến tận cùng thời gian ⏰",
+            "Em là bài thơ đẹp nhất anh từng đọc 📖"
+        ];
+
+        function showLove() {
+            loveCount++;
+            document.getElementById("count").textContent = loveCount;
+
+            const messageElement = document.getElementById("loveMessage");
+            const randomMessage = loveMessages[Math.floor(Math.random() * loveMessages.length)];
+            messageElement.textContent = randomMessage;
+            messageElement.classList.add("show");
+
+            createHeart();
+
+            setTimeout(() => {
+                messageElement.classList.remove("show");
+            }, 3000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.innerHTML = "❤️";
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "%";
+            heart.style.animationDelay = Math.random() * 2 + "s";
+            heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+            document.getElementById("hearts").appendChild(heart);
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        let isPlaying = false;
+
+        function playMusic() {
+            const player = document.getElementById("youtubeAudio");
+            const musicBtn = document.querySelector('[onclick="playMusic()"]');
+
+            if (!isPlaying) {
+                player.src =
+                    "https://www.youtube.com/embed/fiZEng5xDf0?autoplay=1&loop=1&playlist=fiZEng5xDf0";
+                musicBtn.innerHTML = "⏸️ Dừng nhạc";
+                musicBtn.style.background = "linear-gradient(45deg, #28a745, #20c997)";
+                isPlaying = true;
+
+                const musicNotes = ["🎵", "🎶", "🎼", "♪", "♫"];
+                for (let i = 0; i < 15; i++) {
+                    setTimeout(() => {
+                        const note = document.createElement("div");
+                        note.innerHTML = musicNotes[Math.floor(Math.random() * musicNotes.length)];
+                        note.className = "music-note";
+                        note.style.left = Math.random() * 100 + "%";
+                        note.style.animationDelay = Math.random() * 2 + "s";
+                        document.body.appendChild(note);
+                        setTimeout(() => {
+                            note.remove();
+                        }, 4000);
+                    }, i * 150);
+                }
+            } else {
+                player.src = "";
+                musicBtn.innerHTML = "🎵 Phát nhạc tình yêu";
+                musicBtn.style.background = "linear-gradient(45deg, #ff6b9d, #ff8fab)";
+                isPlaying = false;
+            }
+        }
+
+        function createMemory() {
+            const memories = [
+                "Kỷ niệm: Lần đầu tiên anh gặp em 👀💕",
+                "Kỷ niệm: Nụ hôn đầu tiên của chúng ta 💋",
+                "Kỷ niệm: Buổi hẹn hò đầu tiên 🌹",
+                "Kỷ niệm: Lần đầu nói 'Anh yêu em' 💘",
+                "Kỷ niệm: Cùng nhau xem hoàng hôn 🌅",
+                "Kỷ niệm: Sinh nhật đáng nhớ của em 🎂",
+                "Kỷ niệm: Chuyến du lịch cùng nhau ✈️",
+                "Kỷ niệm: Đêm sao đầu tiên bên nhau ⭐"
+            ];
+            const randomMemory = memories[Math.floor(Math.random() * memories.length)];
+            alert(`💭 ${randomMemory}\n\nMỗi kỷ niệm với em đều là báu vật của anh! 💎`);
+        }
+
+        function init() {
+            const now = new Date();
+            const dateStr = now.toLocaleDateString("vi-VN", {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            });
+            document.getElementById("currentDate").textContent = dateStr;
+
+            setInterval(createHeart, 2000);
+        }
+
+        init();
+    </script>
+</body>
+
+</html>
